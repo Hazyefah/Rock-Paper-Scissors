@@ -5,22 +5,19 @@ let computerScore = 0;
 
 // Prompt user for their choice of Rock, Paper, or Scissors, must be one of the three
 
-function playerSelection(userSelection) {
-    return userSelection;
-}
-
+let playerSelection = userSelection => userSelection;
 
 // Function called computerPlay which randomly genereates what the Computer will play from Rock, Paper, or Scissors
 
-function computerPlay() {
+let computerPlay = () => {
     let choices = ["rock", "paper", "scissors"];
     var randomNumber = Math.floor(Math.random() * choices.length);
     return choices[randomNumber];
-}
+};
 
 
 // Function that determines who is the winner based off of Users selection versus Computers selection
-function playRound(playerSelection, computerSelection) {
+let playRound = (playerSelection, computerSelection) => {
     if (playerSelection === computerSelection) {
         return "It's a draw!";
     }
@@ -60,29 +57,27 @@ function playRound(playerSelection, computerSelection) {
             return "You Win! Computer chose Scissors.";;
         }
     }
-}
+};
 
 // Winner of current round needs to be displayed with who chose who.
 // When clicking a button, a score should appear for player and computer respectively
 // Score keeps updating to 5 till a player wins
 // Once one of the scores equals 5, new div should appear announcing winner.
 
-function displayRoundWinner(playRound) {
+let displayRoundWinner = playRound => {
     const winner = document.querySelector("#roundWinner");
     winner.textContent = playRound;
-}
+};
 
-function updateScore() {
+let updateScore = () => {
     const player = document.querySelector("#playerScore");
     player.textContent = `Your Score: ${playerScore}`;
 
     const computer = document.querySelector("#computerScore");
     computer.textContent = `Computer Score: ${computerScore}`;
+};
 
-
-}
-
-function checkGameWinner() {
+let checkGameWinner = () => {
     const gameWinner = document.querySelector("#gameWinner");
     if (playerScore === 5) {
         gameWinner.textContent = "Game over! Player Wins!"
@@ -95,9 +90,9 @@ function checkGameWinner() {
     }
 
     return false;
-}
+};
 
-function reset() {
+let reset = () => {
     if (checkGameWinner()) {
         playerScore = 0;
         computerScore = 0;
@@ -106,14 +101,14 @@ function reset() {
         const gameWinner = document.querySelector("#gameWinner");
         gameWinner.textContent = "";
     }
-}
+};
 
-function game(e){
+let game = e => {
     reset();
     displayRoundWinner(playRound(playerSelection(e.target.innerText.toLowerCase()), computerPlay()));
     updateScore();
     checkGameWinner();
-}
+};
 
 
 
